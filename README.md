@@ -1,12 +1,16 @@
+# RAF
+
+- Remove the docker-compose.dev.yml file
+- Fix the docker compose build errors
+
 # Docker stack starter pack
 
 ## Installation
 
-
-### 1. Rename the cloned directory from "docker-stack-starter-pack" to your project name
+### 1. Rename the cloned directory from "mydocker" to your project name
 
 ```shell
-mv docker-stack-starter-pack {your_project_name}
+mv mydocker {your_project_name}
 ```
 
 Then, remove the `.git` folder :
@@ -20,7 +24,7 @@ rm -rf .git
 
 ```shell
 cd {your_project_name}
-mv .env.example .env
+cp .env.example .env
 ```
 
 #### 2.1 Add your `DEV_UID` and `DEV_GID`

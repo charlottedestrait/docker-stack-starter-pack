@@ -2,26 +2,26 @@ version: '3'
 
 services:
 
-  docker-stack-starter-pack_apache:
+  mydocker_apache:
     ports:
       - "80:80"
 
-  docker-stack-starter-pack_php_fpm:
+  mydocker_php_fpm:
     container_name: ${PROJECT_NAME}_php_fpm
     volumes:
       - "~/.gitconfig:/home/site/.gitconfig"
       - "$SSH_AUTH_SOCK:/ssh-agent:ro"
-      - "docker-stack-starter-pack_fpm_bashistory:/home/site/homekeep"
+      - "mydocker_fpm_bashistory:/home/site/homekeep"
       - "./docker/config/fpm/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini"
     environment:
       - SSH_AUTH_SOCK=/ssh-agent
 
-  docker-stack-starter-pack_mail:
+  mydocker_mail:
     container_name: ${PROJECT_NAME}_mail
     image: "mailhog/mailhog:v1.0.1"
     ports:
       - "8025:8025"
 
 volumes:
-  docker-stack-starter-pack_fpm_bashistory:
+  mydocker_fpm_bashistory:
     driver: local

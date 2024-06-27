@@ -2,7 +2,7 @@ version: '3'
 
 services:
 
-  docker-stack-starter-pack_apache:
+  mydocker_apache:
     container_name: ${PROJECT_NAME}_apache
     build:
       context: "docker/config/apache"
@@ -13,11 +13,11 @@ services:
       - "./:/home/site/app/www:rw"
       - "./docker/config/apache/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro"
       - "./docker/config/apache/vhost.conf:/usr/local/apache2/conf/vhost.conf:ro"
-      - "docker-stack-starter-pack_apachelogs:/var/log/app"
+      - "mydocker_apachelogs:/var/log/app"
     environment:
       - SSH_AUTH_SOCK=/ssh-agent
 
-  docker-stack-starter-pack_php_fpm:
+  mydocker_php_fpm:
     container_name: ${PROJECT_NAME}_php_fpm
     build:
       context: "docker/config/fpm"
@@ -29,25 +29,25 @@ services:
       - "./docker/config/fpm/www.conf:/usr/local/etc/php-fpm.d/www.conf"
       - "./docker/config/fpm/bashrc:/home/site/.bashrc"
       - "./docker/config/fpm/custom_conf.ini:/usr/local/etc/php/conf.d/custom_config.ini"
-      - "docker-stack-starter-pack_apachelogs:/home/site/app/logs"
+      - "mydocker_apachelogs:/home/site/app/logs"
     user: site
     env_file:
       - .env
 
-  docker-stack-starter-pack_mysql:
+  mydocker_mysql:
     container_name: ${PROJECT_NAME}_mysql
     image: "mariadb:10.5.8"
     env_file:
       - .env
     volumes:
-      - "docker-stack-starter-pack_mysql_data:/var/lib/mysql"
+      - "mydocker_mysql_data:/var/lib/mysql"
 
-  docker-stack-starter-pack_redis:
+  mydocker_redis:
     container_name: ${PROJECT_NAME}_redis
     image: "redis:5.0.5"
 
 volumes:
-  docker-stack-starter-pack_mysql_data:
+  mydocker_mysql_data:
     driver: local
-  docker-stack-starter-pack_apachelogs:
+  mydocker_apachelogs:
     driver: local
