@@ -2,23 +2,41 @@
 
 ## Installation
 
+
 ### 1. Rename the cloned directory from "docker-stack-starter-pack" to your project name
 
-### 2. Remove the .git folder
+```shell
+mv docker-stack-starter-pack {your_project_name}
+```
+
+Then, remove the `.git` folder :
+
 ```shell
 cd {your_project_name}
 rm -rf .git
 ```
 
-### 3. Replace all "docker-stack-starter-pack" words by your project name
+### 2. Create the .env file
 
-### 4. Generate your .env file by running this command
+```shell
+cd {your_project_name}
+mv .env.example .env
+```
+
+#### 2.1 Add your `DEV_UID` and `DEV_GID`
 ```shell
 cd {your_project_name}
 echo "DEV_UID=$(id -u)" >> .env && echo "DEV_GID=$(id -g)" >> .env
 ```
 
-### 5. Add the host name to your vhost file
+#### 2.2 Set your project name
+
+Fill the `PROJECT_NAME` value in the .env file :
+```shell
+PROJECT_NAME={your_project_name}
+```
+
+### 3. Add the host name to your vhost file
 ```shell
 127.0.0.1 www.{your_project_name}.dpdev
 ```

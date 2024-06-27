@@ -7,7 +7,7 @@ services:
       - "80:80"
 
   docker-stack-starter-pack_php_fpm:
-    container_name: docker-stack-starter-pack_php_fpm
+    container_name: ${PROJECT_NAME}_php_fpm
     volumes:
       - "~/.gitconfig:/home/site/.gitconfig"
       - "$SSH_AUTH_SOCK:/ssh-agent:ro"
@@ -17,7 +17,7 @@ services:
       - SSH_AUTH_SOCK=/ssh-agent
 
   docker-stack-starter-pack_mail:
-    container_name: docker-stack-starter-pack_mail
+    container_name: ${PROJECT_NAME}_mail
     image: "mailhog/mailhog:v1.0.1"
     ports:
       - "8025:8025"

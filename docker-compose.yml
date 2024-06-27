@@ -3,7 +3,7 @@ version: '3'
 services:
 
   docker-stack-starter-pack_apache:
-    container_name: docker-stack-starter-pack_apache
+    container_name: ${PROJECT_NAME}_apache
     build:
       context: "docker/config/apache"
       args:
@@ -18,7 +18,7 @@ services:
       - SSH_AUTH_SOCK=/ssh-agent
 
   docker-stack-starter-pack_php_fpm:
-    container_name: docker-stack-starter-pack_php_fpm
+    container_name: ${PROJECT_NAME}_php_fpm
     build:
       context: "docker/config/fpm"
       args:
@@ -35,7 +35,7 @@ services:
       - .env
 
   docker-stack-starter-pack_mysql:
-    container_name: docker-stack-starter-pack_mysql
+    container_name: ${PROJECT_NAME}_mysql
     image: "mariadb:10.5.8"
     env_file:
       - .env
@@ -43,7 +43,7 @@ services:
       - "docker-stack-starter-pack_mysql_data:/var/lib/mysql"
 
   docker-stack-starter-pack_redis:
-    container_name: docker-stack-starter-pack_redis
+    container_name: ${PROJECT_NAME}_redis
     image: "redis:5.0.5"
 
 volumes:
